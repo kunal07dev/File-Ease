@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,200 +11,155 @@
         android:background="#F0F6F8"
         tools:context=".MainActivity">
 
-
-        <TextView
-            android:id="@+id/stext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sbar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="8dp"
-            android:text="4 gb out of 64"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sbar"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/photobtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            android:layout_marginStart="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/videobtn"
-            app:srcCompat="@drawable/photo" />
-
-        <ImageView
-            android:id="@+id/videobtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/photobtn"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:srcCompat="@drawable/play" />
-
-        <TextView
-            android:id="@+id/photosize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
-            android:text="2.6 GB"
-            app:layout_constraintEnd_toEndOf="@+id/photobtn"
-            app:layout_constraintHorizontal_bias="0.562"
-            app:layout_constraintStart_toStartOf="@+id/photobtn"
-            app:layout_constraintTop_toTopOf="@+id/photobtn" />
-
-        <TextView
-            android:id="@+id/videosize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:text="2.1 GB"
-            app:layout_constraintEnd_toEndOf="@+id/videobtn"
-            app:layout_constraintStart_toStartOf="@+id/videobtn"
-            app:layout_constraintTop_toTopOf="@+id/videobtn" />
-
-        <ImageView
-            android:id="@+id/docbtn"
-            android:layout_width="63dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/docs" />
-
-        <TextView
-            android:id="@+id/pdfsize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="1.9 GB"
-            app:layout_constraintEnd_toEndOf="@+id/pdfbtn"
-            app:layout_constraintHorizontal_bias="0.458"
-            app:layout_constraintStart_toStartOf="@+id/pdfbtn"
-            app:layout_constraintTop_toBottomOf="@+id/pdfbtn" />
-
-        <TextView
-            android:id="@+id/docsize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="83dp"
-            android:text="4.3 MB"
-            app:layout_constraintEnd_toEndOf="@+id/docbtn"
-            app:layout_constraintStart_toStartOf="@+id/docbtn"
-            app:layout_constraintTop_toTopOf="@+id/docbtn" />
-
+        <!-- Top Guideline (controls how much content is shifted down) -->
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+            android:id="@+id/topGuideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="164dp" />
+            app:layout_constraintGuide_begin="200dp" /> <!-- you can adjust this dp -->
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_begin="282dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!-- Phone Storage Text -->
 
-        <!--android:progressDrawable="@drawable/custom_progress"-->
+        <!-- Storage Progress Bar -->
 
+        <!-- Storage Text -->
 
-        <ProgressBar
-            android:id="@+id/sbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:indeterminateDrawable="@drawable/custom_progress"
-            android:max="100"
-            android:progress="55"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!-- PHOTO -->
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="44dp"
             android:text="Phone Storage"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/sbar"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/sbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="15dp"
+            android:max="100"
+            android:progress="55"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/stext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="4 GB out of 64"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sbar" />
+
+        <ImageView
+            android:id="@+id/photobtn"
+            android:layout_width="58dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/videobtn"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stext"
+            app:srcCompat="@drawable/photo" />
+
+        <TextView
+            android:id="@+id/photosize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="2.6 GB"
+            app:layout_constraintEnd_toEndOf="@+id/photobtn"
+            app:layout_constraintStart_toStartOf="@+id/photobtn"
+            app:layout_constraintTop_toBottomOf="@+id/photobtn" />
+
+        <!-- VIDEO -->
+        <ImageView
+            android:id="@+id/videobtn"
+            android:layout_width="58dp"
+            android:layout_height="77dp"
+            app:layout_constraintEnd_toStartOf="@+id/pdfbtn"
+            app:layout_constraintStart_toEndOf="@+id/photobtn"
+            app:layout_constraintTop_toTopOf="@+id/photobtn"
+            app:srcCompat="@drawable/play" />
+
+        <TextView
+            android:id="@+id/videosize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="2.1 GB"
+            app:layout_constraintEnd_toEndOf="@+id/videobtn"
+            app:layout_constraintStart_toStartOf="@+id/videobtn"
+            app:layout_constraintTop_toBottomOf="@+id/videobtn" />
+
+        <!-- PDF -->
+        <ImageView
+            android:id="@+id/pdfbtn"
+            android:layout_width="58dp"
+            android:layout_height="77dp"
+            app:layout_constraintEnd_toStartOf="@+id/docbtn"
+            app:layout_constraintStart_toEndOf="@+id/videobtn"
+            app:layout_constraintTop_toTopOf="@+id/photobtn"
+            app:srcCompat="@drawable/file" />
+
+        <TextView
+            android:id="@+id/pdfsize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1.9 GB"
+            app:layout_constraintEnd_toEndOf="@+id/pdfbtn"
+            app:layout_constraintStart_toStartOf="@+id/pdfbtn"
+            app:layout_constraintTop_toBottomOf="@+id/pdfbtn" />
+
+        <!-- DOC -->
+        <ImageView
+            android:id="@+id/docbtn"
+            android:layout_width="58dp"
+            android:layout_height="77dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pdfbtn"
+            app:layout_constraintTop_toTopOf="@+id/photobtn"
+            app:srcCompat="@drawable/docs" />
+
+        <TextView
+            android:id="@+id/docsize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="4.3 MB"
+            app:layout_constraintEnd_toEndOf="@+id/docbtn"
+            app:layout_constraintStart_toStartOf="@+id/docbtn"
+            app:layout_constraintTop_toBottomOf="@+id/docbtn" />
+
+        <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
             app:itemActiveIndicatorStyle="@style/App.CustomIndicator"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:menu="@menu/bottom" />
 
-        <FrameLayout
-            android:id="@+id/content"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        </FrameLayout>
-
-        <ImageView
-            android:id="@+id/pdfbtn"
-            android:layout_width="66dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toStartOf="@+id/docbtn"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/file" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <RelativeLayout-->
-<!--        android:id="@+id/loadingOverlay"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="#80000000"-->
-<!--        android:visibility="gone">-->
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBar"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerInParent="true" />-->
-
-  <!--  </RelativeLayout>-->
-
 </FrameLayout>
-
-

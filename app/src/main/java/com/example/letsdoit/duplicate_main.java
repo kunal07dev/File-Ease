@@ -158,6 +158,7 @@ public class duplicate_main extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

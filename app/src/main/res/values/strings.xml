@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">letsdoit</string>
+    <string name="file_thumbnail">File Thumbnail</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.os.Looper;
 import android.provider.MediaStore;
 import android.provider.DocumentsContract;
 import android.os.StatFs;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar sbar;
     private static final int PICK_DOCUMENT_REQUEST = 1;
     private ActivityResultLauncher<Intent> documentPickerLauncher;
-
+    private static final int STORAGE_PERMISSION_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +66,17 @@ public class MainActivity extends AppCompatActivity {
         videosize = findViewById(R.id.videosize);
         pdfsize = findViewById(R.id.pdfsize);
         docsize = findViewById(R.id.docsize);
-
+        checkPermissions();
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.Dupli) {
                 Intent intent = new Intent(MainActivity.this, duplicate_main.class);
                 startActivity(intent);
+            } else if (item.getItemId()== R.id.Files) {
+                Intent intent=new Intent(MainActivity.this,Filesearch.class);
+                startActivity(intent);
+                
+            } else if (item.getItemId()==R.id.Conversion) {
+                
             }
             return true;
         });
@@ -230,5 +238,31 @@ public class MainActivity extends AppCompatActivity {
         long videos;
         long pdfs;
         long docs;
+    }
+    private void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                try {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
+                }
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        },
+                        STORAGE_PERMISSION_CODE);
+            }
+        }
     }
 }
