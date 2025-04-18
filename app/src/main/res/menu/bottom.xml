@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Dupli"
+
+        android:icon="@drawable/files"
+        android:title="Duplicate" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/img_serach"
+        android:title="Image Search" />
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/ai_search"
+        android:title="Ai search" />
+    <item
+        android:id="@+id/More"
+        android:icon="@drawable/menu_burger"
+        android:title="More" />
+</menu>

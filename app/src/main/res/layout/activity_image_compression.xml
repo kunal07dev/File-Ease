@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Title -->
+    <Button
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Images"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp" />
+
+    <!-- Select All Images Option -->
+    <CheckBox
+        android:id="@+id/cbSelectAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select All Images"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView to Display Image Files -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImageFiles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:scrollbars="vertical" />
+
+    <!-- Compression Quality Options -->
+    <TextView
+        android:id="@+id/tvCompressionQuality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Compression Quality:"
+        android:paddingTop="16dp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgCompressionQuality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+
+        <RadioButton
+            android:id="@+id/rbLowQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low" />
+
+        <RadioButton
+            android:id="@+id/rbModerateQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderate"
+            android:layout_marginStart="16dp" />
+
+        <RadioButton
+            android:id="@+id/rbHighQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High"
+            android:layout_marginStart="16dp" />
+    </RadioGroup>
+
+    <!-- Physical Size Inputs -->
+    <TextView
+        android:id="@+id/tvPhysicalSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Physical Size (Optional):"
+        android:paddingTop="16dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/etWidth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Width (px)"
+            android:inputType="number"
+            android:padding="8dp"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/etHeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Height (px)"
+            android:inputType="number"
+            android:padding="8dp"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Compression Button -->
+
+    <!-- Option to Delete or Keep Original File -->
+    <TextView
+        android:id="@+id/tvDeleteOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Would you like to delete the original file?"
+        android:paddingTop="16dp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgDeleteOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+
+        <RadioButton
+            android:id="@+id/rbDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+
+        <RadioButton
+            android:id="@+id/rbKeepBoth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keep Both"
+            android:layout_marginStart="16dp" />
+    </RadioGroup>
+
+    <!-- Decompression Button -->
+    <Button
+        android:id="@+id/btnCompressImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/gray"
+        android:text="Compress Images"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnDecompressImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Decompress Images"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/gray"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
