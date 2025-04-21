@@ -37,7 +37,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
+        <activity
+            android:name=".Imagepdf"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".pdftoimage"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".duplicate_main"
             android:exported="false"

@@ -26,6 +26,7 @@
             android:background="@drawable/rounded_header"/>
 
         <LinearLayout
+            android:id="@+id/pdftoword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -67,6 +68,7 @@
 
         <!-- Tile 2 -->
         <LinearLayout
+            android:id="@+id/imagetopdf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -106,6 +108,7 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/pdftoimage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -145,6 +148,7 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/pdftotext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -202,6 +206,7 @@
 
             <!-- Texts -->
             <LinearLayout
+                android:id="@+id/jpgtopng"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -241,6 +246,7 @@
 
             <!-- Texts -->
             <LinearLayout
+                android:id="@+id/pngtojpg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

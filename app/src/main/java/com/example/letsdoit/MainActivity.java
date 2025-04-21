@@ -18,6 +18,7 @@ import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity {
     private CardView photocard,videocard,pdfcard,Docs;
     private static final int PICK_DOCUMENT_REQUEST = 1;
     private ActivityResultLauncher<Intent> documentPickerLauncher;
+
     private static final int STORAGE_PERMISSION_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
