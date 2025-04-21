@@ -93,21 +93,21 @@ public class ImageCompressionActivity extends AppCompatActivity {
     }
 
     private void initializeUI() {
-        recyclerView = findViewById(R.id.rvImageFiles);
+      //  recyclerView = findViewById(R.id.rvImageFiles);
 
         rgCompressionQuality = findViewById(R.id.rgCompressionQuality);
-        rgDeleteOption = findViewById(R.id.rgDeleteOption);
-        etWidth = findViewById(R.id.etWidth);
-        etHeight = findViewById(R.id.etHeight);
-        btnCompressImages = findViewById(R.id.btncompress);
-        title = findViewById(R.id.tvTitle);
+        rgDeleteOption = findViewById(R.id.deleteOptionGroup);
+        etWidth = findViewById(R.id.widthInput);
+        etHeight = findViewById(R.id.heightInput);
+        btnCompressImages = findViewById(R.id.compressButton);
+        title = findViewById(R.id.browseButton);
 
         imageUris = new ArrayList<>();
         adapter = new ImageAdapter(this, imageUris);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        if (!imageUris.isEmpty()) {
-          recyclerView.setAdapter(adapter);
-//        }
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+////        if (!imageUris.isEmpty()) {
+//          recyclerView.setAdapter(adapter);
+////        }
 }
 
     // Method to open the file picker for images
@@ -121,7 +121,7 @@ public class ImageCompressionActivity extends AppCompatActivity {
 
 
         adapter.notifyDataSetChanged(); // Notify the adapter to update the RecyclerView
-        recyclerView.setVisibility(View.VISIBLE);
+//        recyclerView.setVisibility(View.VISIBLE);
 
     }
 
@@ -137,7 +137,7 @@ public class ImageCompressionActivity extends AppCompatActivity {
 
         int selectedQuality = getSelectedQuality();
 
-        boolean deleteOriginal = rgDeleteOption.getCheckedRadioButtonId() == R.id.rbDelete;
+        boolean deleteOriginal = rgDeleteOption.getCheckedRadioButtonId() == R.id.deleteYes;
 
 
         for (Uri uri : imageUris) {
@@ -168,7 +168,7 @@ public class ImageCompressionActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Compression complete!", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Compression completed successfully.");
-        recyclerView.setVisibility(View.GONE);
+//        recyclerView.setVisibility(View.GONE);
 
         adapter.clearData();  // Clear the RecyclerView's data
         adapter.notifyDataSetChanged();
@@ -177,13 +177,13 @@ public class ImageCompressionActivity extends AppCompatActivity {
     // Get the selected compression quality from the RadioGroup
     private int getSelectedQuality() {
         int selectedId = rgCompressionQuality.getCheckedRadioButtonId();
-        if (selectedId == R.id.rbLowQuality) {
+        if (selectedId == R.id.lowQuality) {
             Log.d(TAG, "Low compression quality selected.");
             return 30;
-        } else if (selectedId == R.id.rbModerateQuality) {
+        } else if (selectedId == R.id.moderateQuality) {
             Log.d(TAG, "Moderate compression quality selected.");
             return 50;
-        } else if (selectedId == R.id.rbHighQuality) {
+        } else if (selectedId == R.id.highQuality) {
             Log.d(TAG, "High compression quality selected.");
             return 75;
         }

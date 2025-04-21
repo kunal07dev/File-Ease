@@ -45,8 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             return MainActivity.class;
         } else if (menuItemId == R.id.Dupli) {
             return duplicate_main.class;
-//        } else if (menuItemId == R.id.Conversion) {
-//            return ConversionActivity.class;
+        } else if (menuItemId == R.id.Conversion) {
+            return conversions.class;
         } else if (menuItemId == R.id.Files) {
             return Filesearch.class;
         }
