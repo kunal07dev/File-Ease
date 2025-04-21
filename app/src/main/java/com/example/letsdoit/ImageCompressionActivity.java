@@ -48,7 +48,7 @@ public class ImageCompressionActivity extends AppCompatActivity {
     private CheckBox cbSelectAll;
     private RadioGroup rgCompressionQuality, rgDeleteOption;
     private EditText etWidth, etHeight;
-    private Button btnCompressImages, btnDecompressImages;
+    private TextView btnCompressImages;
     private List<Uri> imageUris;
 
     // ActivityResultLauncher for image selection
@@ -94,13 +94,12 @@ public class ImageCompressionActivity extends AppCompatActivity {
 
     private void initializeUI() {
         recyclerView = findViewById(R.id.rvImageFiles);
-        cbSelectAll = findViewById(R.id.cbSelectAll);
+
         rgCompressionQuality = findViewById(R.id.rgCompressionQuality);
         rgDeleteOption = findViewById(R.id.rgDeleteOption);
         etWidth = findViewById(R.id.etWidth);
         etHeight = findViewById(R.id.etHeight);
-        btnCompressImages = findViewById(R.id.btnCompressImages);
-        btnDecompressImages = findViewById(R.id.btnDecompressImages);
+        btnCompressImages = findViewById(R.id.btncompress);
         title = findViewById(R.id.tvTitle);
 
         imageUris = new ArrayList<>();

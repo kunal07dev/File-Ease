@@ -5,161 +5,352 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Background with gradient -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F0F6F8"
+        android:background="@drawable/bg_gradient"
         tools:context=".MainActivity">
 
-        <!-- Top Guideline (controls how much content is shifted down) -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/topGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_begin="200dp" /> <!-- you can adjust this dp -->
+        <!-- Curved header background with app name -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_header_curve"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Phone Storage Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="FileEase"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
 
-        <!-- Storage Progress Bar -->
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.123"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.288" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Storage Text -->
-
-        <!-- PHOTO -->
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="44dp"
-            android:text="Phone Storage"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/sbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="15dp"
-            android:max="100"
-            android:progress="55"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/stext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="4 GB out of 64"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sbar" />
-
-        <ImageView
-            android:id="@+id/photobtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/videobtn"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stext"
-            app:srcCompat="@drawable/photo" />
-
-        <TextView
-            android:id="@+id/photosize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="2.6 GB"
-            app:layout_constraintEnd_toEndOf="@+id/photobtn"
-            app:layout_constraintStart_toStartOf="@+id/photobtn"
-            app:layout_constraintTop_toBottomOf="@+id/photobtn" />
-
-        <!-- VIDEO -->
-        <ImageView
-            android:id="@+id/videobtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            app:layout_constraintEnd_toStartOf="@+id/pdfbtn"
-            app:layout_constraintStart_toEndOf="@+id/photobtn"
-            app:layout_constraintTop_toTopOf="@+id/photobtn"
-            app:srcCompat="@drawable/play" />
-
-        <TextView
-            android:id="@+id/videosize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="2.1 GB"
-            app:layout_constraintEnd_toEndOf="@+id/videobtn"
-            app:layout_constraintStart_toStartOf="@+id/videobtn"
-            app:layout_constraintTop_toBottomOf="@+id/videobtn" />
-
-        <!-- PDF -->
-        <ImageView
-            android:id="@+id/pdfbtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            app:layout_constraintEnd_toStartOf="@+id/docbtn"
-            app:layout_constraintStart_toEndOf="@+id/videobtn"
-            app:layout_constraintTop_toTopOf="@+id/photobtn"
-            app:srcCompat="@drawable/file" />
-
-        <TextView
-            android:id="@+id/pdfsize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="1.9 GB"
-            app:layout_constraintEnd_toEndOf="@+id/pdfbtn"
-            app:layout_constraintStart_toStartOf="@+id/pdfbtn"
-            app:layout_constraintTop_toBottomOf="@+id/pdfbtn" />
-
-        <!-- DOC -->
-        <ImageView
-            android:id="@+id/docbtn"
-            android:layout_width="58dp"
-            android:layout_height="77dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/pdfbtn"
-            app:layout_constraintTop_toTopOf="@+id/photobtn"
-            app:srcCompat="@drawable/docs" />
-
-        <TextView
-            android:id="@+id/docsize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="4.3 MB"
-            app:layout_constraintEnd_toEndOf="@+id/docbtn"
-            app:layout_constraintStart_toStartOf="@+id/docbtn"
-            app:layout_constraintTop_toBottomOf="@+id/docbtn" />
-
-        <!-- Bottom Navigation -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:itemActiveIndicatorStyle="@style/App.CustomIndicator"
-            app:labelVisibilityMode="labeled"
+        <!-- Scrollable content area -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            app:itemTextColor="#B9EEF4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom" />
+            app:layout_constraintTop_toBottomOf="@id/headerBackground">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- Storage Info Section -->
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Storage"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ProgressBar
+                    android:id="@+id/sbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="16dp"
+                    android:max="100"
+                    android:progress="20"
+                    android:progressDrawable="@drawable/wave_pattern"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView"/>
+
+                <TextView
+                    android:id="@+id/stext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="4 GB out of 64"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sbar"/>
+
+                <!-- Storage Categories Grid -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cardContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stext">
+
+                    <!-- Row 1 -->
+                    <!-- Photo Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/photocard"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toStartOf="@+id/videocard"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#5999de
+"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/photobtn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+
+                                android:src="@drawable/imagewhite" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Photos"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/photosize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="2.6 GB"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Click to compress"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Video Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/videocard"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/photocard"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#5999de"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/videobtn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/video" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Videos"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/videosize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="2.1 GB"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Click to compress"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Row 2 -->
+                    <!-- PDF Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/pdfcard"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toStartOf="@+id/doccard"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/photocard">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#5999de"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/pdfbtn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/pdf" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="PDFs"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/pdfsize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="1.5 GB"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Click to compress"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Docs Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/doccard"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/pdfcard"
+                        app:layout_constraintTop_toBottomOf="@+id/videocard">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#5999de"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/docbtn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/docs" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Docs"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/docsize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="760 MB"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Click to compress"
+                                android:textAlignment="center"
+                                android:textColor="@color/onPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Bottom padding to account for navigation -->
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="16dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Bottom Navigation (fixed) -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

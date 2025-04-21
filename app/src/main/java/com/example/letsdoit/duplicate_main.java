@@ -27,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class duplicate_main extends AppCompatActivity {
+public class duplicate_main extends BaseActivity {
     private static final int REQUEST_PERMISSION = 1;
     private RecyclerView recyclerView;
     private DuplicateFileAdapter adapter;
@@ -39,7 +39,7 @@ public class duplicate_main extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_duplicate_main);
+//        setContentView(R.layout.activity_duplicate_main);
 
         // Initialize UI components
         Button scanButton = findViewById(R.id.button_scan);
@@ -74,7 +74,15 @@ public class duplicate_main extends AppCompatActivity {
             deleteSelectedFiles();
         });
     }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_duplicate_main;
+    }
 
+    @Override
+    protected int getNavigationMenuItemId() {
+        return R.id.Dupli;
+    }
     private boolean hasStoragePermission() {
         Log.d(TAG, "hasStoragePermission: Checking permission");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // Android 11+

@@ -29,6 +29,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -39,7 +40,7 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private ImageView photobtn, videobtn, pdfbtn, docbtn;
     private TextView photosize, videosize, pdfsize, docsize, stext;
     private RelativeLayout loadingOverlay;
@@ -47,41 +48,33 @@ public class MainActivity extends AppCompatActivity {
     private Handler mainThreadHandler;
     private BottomNavigationView bottomNavigationView;
     private ProgressBar sbar;
+    private CardView photocard,videocard,pdfcard,Docs;
     private static final int PICK_DOCUMENT_REQUEST = 1;
     private ActivityResultLauncher<Intent> documentPickerLauncher;
     private static final int STORAGE_PERMISSION_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        photocard = findViewById(R.id.photocard);
 
+        pdfbtn = findViewById(R.id.pdfbtn);
+        docbtn = findViewById(R.id.docbtn);
         photobtn = findViewById(R.id.photobtn);
         videobtn = findViewById(R.id.videobtn);
         pdfbtn = findViewById(R.id.pdfbtn);
         docbtn = findViewById(R.id.docbtn);
         stext = findViewById(R.id.stext);
         sbar = findViewById(R.id.sbar);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
         photosize = findViewById(R.id.photosize);
         videosize = findViewById(R.id.videosize);
         pdfsize = findViewById(R.id.pdfsize);
         docsize = findViewById(R.id.docsize);
         checkPermissions();
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.Dupli) {
-                Intent intent = new Intent(MainActivity.this, duplicate_main.class);
-                startActivity(intent);
-            } else if (item.getItemId()== R.id.Files) {
-                Intent intent=new Intent(MainActivity.this,Filesearch.class);
-                startActivity(intent);
-                
-            } else if (item.getItemId()==R.id.Conversion) {
-                
-            }
-            return true;
-        });
 
-        photobtn.setOnClickListener(v -> {
+
+        photocard.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ImageCompressionActivity.class);
             startActivity(intent);
         });
@@ -114,7 +107,15 @@ public class MainActivity extends AppCompatActivity {
             scanStorage();
         }
     }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main; // Your existing activity layout
+    }
 
+    @Override
+    protected int getNavigationMenuItemId() {
+        return R.id.Home;
+    }
     private void scanStorage() {
         Log.d("StorageScan", "Scanning storage...");
         executorService.execute(() -> {

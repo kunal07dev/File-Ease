@@ -61,7 +61,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-    public class Filesearch extends AppCompatActivity {
+    public class Filesearch extends BaseActivity {
         private GridView gridView;
         private ProgressBar progressBar;
 
@@ -81,7 +81,7 @@ import java.util.Set;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.file_main);
+
 
             gridView = findViewById(R.id.gridView);
             progressBar = findViewById(R.id.progressBar);
@@ -119,7 +119,15 @@ import java.util.Set;
                 super.onBackPressed();
             }
         }
+        @Override
+        protected int getLayoutId() {
+            return R.layout.file_main;
+        }
 
+        @Override
+        protected int getNavigationMenuItemId() {
+            return R.id.Files;
+        }
         @Override
         public void onRequestPermissionsResult(int requestCode,
                                                @NonNull String[] permissions,

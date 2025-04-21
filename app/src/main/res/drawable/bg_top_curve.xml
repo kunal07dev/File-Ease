@@ -1,0 +1,6 @@
+<!-- res/drawable/bg_top_curve.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFD966"/> <!-- Yellow -->
+
+</shape>

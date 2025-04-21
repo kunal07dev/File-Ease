@@ -4,4 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="teal_700">#018786</color>
     <color name="gray">#D3D3D3</color>
+    <color name="surface">#FFFBFE</color>
+    <color name="surfaceVariant">#E7E0EC</color>
+    <color name="onSurface">#1C1B1F</color>
+    <color name="onSurfaceVariant">#49454F</color>
+    <color name="primary">#6750A4</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <!-- Dark theme (values-night/colors.xml) -->
+
 </resources>

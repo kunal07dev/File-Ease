@@ -1,166 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@android:color/white">
-
-    <!-- Title -->
-    <Button
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Images"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="10dp" />
-
-    <!-- Select All Images Option -->
-    <CheckBox
-        android:id="@+id/cbSelectAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select All Images"
-        android:visibility="gone"
-        android:layout_marginBottom="16dp" />
-
-    <!-- RecyclerView to Display Image Files -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvImageFiles"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:scrollbars="vertical" />
-
-    <!-- Compression Quality Options -->
-    <TextView
-        android:id="@+id/tvCompressionQuality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Compression Quality:"
-        android:paddingTop="16dp"
-        android:textStyle="bold" />
-
-    <RadioGroup
-        android:id="@+id/rgCompressionQuality"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="8dp">
-
-        <RadioButton
-            android:id="@+id/rbLowQuality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Low" />
-
-        <RadioButton
-            android:id="@+id/rbModerateQuality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moderate"
-            android:layout_marginStart="16dp" />
-
-        <RadioButton
-            android:id="@+id/rbHighQuality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="High"
-            android:layout_marginStart="16dp" />
-    </RadioGroup>
-
-    <!-- Physical Size Inputs -->
-    <TextView
-        android:id="@+id/tvPhysicalSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter Physical Size (Optional):"
-        android:paddingTop="16dp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle">
 
-        <EditText
-            android:id="@+id/etWidth"
-            android:layout_width="0dp"
+        <!-- Title -->
+        <!-- Select Images Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Width (px)"
-            android:inputType="number"
-            android:padding="8dp"
-            android:background="@android:color/darker_gray"
-            android:textColor="@android:color/black" />
+            android:layout_marginTop="16dp"
+            card_view:cardCornerRadius="12dp"
 
-        <EditText
-            android:id="@+id/etHeight"
-            android:layout_width="0dp"
+            card_view:cardElevation="6dp"
+            android:backgroundTint="#f0f0f0">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Images"
+                android:textColor="#333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:background="#5999de"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="16dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Image Preview -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvImageFiles"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Height (px)"
-            android:inputType="number"
-            android:padding="8dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:scrollbars="vertical"
+            android:paddingVertical="8dp" />
+
+        <!-- Compression Quality Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Compression Quality"
+                    android:textColor="#333"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgCompressionQuality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <RadioButton
+                        android:id="@+id/rbLowQuality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Low" />
+
+                    <RadioButton
+                        android:id="@+id/rbModerateQuality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Moderate" />
+
+                    <RadioButton
+                        android:id="@+id/rbHighQuality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="High" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Physical Size Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Physical Size (Optional)"
+                    android:textColor="#333"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <EditText
+                        android:id="@+id/etWidth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Width (px)"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:backgroundTint="#AAAAAA" />
+
+                    <EditText
+                        android:id="@+id/etHeight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:hint="Height (px)"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:backgroundTint="#AAAAAA" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Delete Option Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Original File?"
+                    android:textColor="#333"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgDeleteOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <RadioButton
+                        android:id="@+id/rbDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delete" />
+
+                    <RadioButton
+                        android:id="@+id/rbKeepBoth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Keep Both"
+                        android:layout_marginStart="20dp" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Compress Button -->
+        <TextView
+            android:id="@+id/btncompress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compress"
             android:textColor="@android:color/black"
-            android:layout_marginStart="8dp" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
+            android:textAlignment="center"
+            android:background="#5999de"
+            android:paddingVertical="16dp" />
+
     </LinearLayout>
-
-    <!-- Compression Button -->
-
-    <!-- Option to Delete or Keep Original File -->
-    <TextView
-        android:id="@+id/tvDeleteOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Would you like to delete the original file?"
-        android:paddingTop="16dp"
-        android:textStyle="bold" />
-
-    <RadioGroup
-        android:id="@+id/rgDeleteOption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="8dp">
-
-        <RadioButton
-            android:id="@+id/rbDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete" />
-
-        <RadioButton
-            android:id="@+id/rbKeepBoth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Keep Both"
-            android:layout_marginStart="16dp" />
-    </RadioGroup>
-
-    <!-- Decompression Button -->
-    <Button
-        android:id="@+id/btnCompressImages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
-        android:text="Compress Images"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnDecompressImages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Decompress Images"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
-        android:textColor="@android:color/white" />
-
-</LinearLayout>
+</ScrollView>
