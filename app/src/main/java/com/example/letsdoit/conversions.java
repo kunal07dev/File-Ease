@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 
 public class conversions extends BaseActivity {
 
-    private LinearLayout pdfToWord;
+    private LinearLayout wordtopdf;
     private LinearLayout imageToPdf;
     private LinearLayout pdfToImage;
     private LinearLayout pdfToText;
@@ -31,7 +31,7 @@ public class conversions extends BaseActivity {
 
         // Now that BaseActivity has inflated 'conversion.xml',
         // we can safely findViewById all our conversion options:
-        pdfToWord    = findViewById(R.id.pdftoword);
+        wordtopdf    = findViewById(R.id.wordtopdf);
         imageToPdf   = findViewById(R.id.imagetopdf);
         pdfToImage   = findViewById(R.id.pdftoimage);
         pdfToText    = findViewById(R.id.pdftotext);
@@ -47,10 +47,21 @@ public class conversions extends BaseActivity {
             Intent intent = new Intent(conversions.this,pdftoimage.class);
             startActivity(intent);
         });
-
-        // TODO: hook up your other conversions similarly:
-        // pdfToWord.setOnClickListener(…);
-        // pdfToImage.setOnClickListener(…);
-        // etc.
+        wordtopdf.setOnClickListener(v -> {
+            Intent intent = new Intent(conversions.this,wordpdf.class);
+            startActivity(intent);
+        });
+        pdfToText.setOnClickListener(v -> {
+            Intent intent = new Intent(conversions.this,pdftext.class);
+            startActivity(intent);
+        });
+        jpgToPng.setOnClickListener(v -> {
+            Intent intent = new Intent(conversions.this,jpgtopng.class);
+            startActivity(intent);
+        });
+        pngToJpg.setOnClickListener(v -> {
+            Intent intent = new Intent(conversions.this,pngtojpg.class);
+            startActivity(intent);
+        });
     }
 }

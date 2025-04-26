@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Title -->
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFCFC"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="PDF to Text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Card-like Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white"
+            android:elevation="4dp">
+
+
+        <!-- Title inside card -->
+            <TextView
+                android:id="@+id/cardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Extract Text from PDF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/cardSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Select a PDF file and extract the text content easily."
+                android:textSize="14sp" />
+
+            <!-- EditText for showing extracted text -->
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
+                android:hint="Extracted text will appear here..."
+                android:gravity="top|start"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:scrollbars="vertical"
+                android:overScrollMode="always"
+                android:maxLines="20"
+                android:layout_marginBottom="16dp"/>
+
+
+            <!-- Button to Select PDF -->
+            <Button
+                android:id="@+id/selectPdfFileBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select PDF File"
+                android:backgroundTint="#2196F3"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Button to Convert PDF to Text -->
+            <Button
+                android:id="@+id/convertToTextBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Convert PDF to Text"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

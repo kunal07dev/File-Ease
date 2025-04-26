@@ -38,6 +38,22 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <activity
+            android:name=".jpgtopng"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".pngtojpg"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".pdftext"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".wordpdf"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".Imagepdf"
             android:exported="false"
             android:screenOrientation="portrait"/>

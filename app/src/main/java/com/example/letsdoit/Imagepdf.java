@@ -45,8 +45,7 @@ public class Imagepdf extends AppCompatActivity {
 
         Button selectImagesBtn = findViewById(R.id.selectImageBtn);
         Button convertToPdfBtn = findViewById(R.id.convertToPdfBtn);
-        //Button selectPdfBtn = findViewById(R.id.selectPdfBtn);
-        // Button convertToImagesBtn = findViewById(R.id.convertToImagesBtn);
+
 
         ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -86,17 +85,7 @@ public class Imagepdf extends AppCompatActivity {
                     }
                 });
 
-//        selectPdfBtn.setOnClickListener(v -> {
-//            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-//            intent.setType("application/pdf");
-//            pdfPickerLauncher.launch(intent);
-//        });
 
-//        convertToImagesBtn.setOnClickListener(v -> {
-//            if (selectedPdfUri != null) {
-//                extractImagesFromPdf(selectedPdfUri);
-//            }
-//        });
     }
 
     private void convertImagesToPdf() {
@@ -151,23 +140,7 @@ public class Imagepdf extends AppCompatActivity {
 
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
     }
-    private void saveImageToGallery(Bitmap bitmap, String filename) {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, filename + ".jpg");
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-        values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
 
-        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        try {
-            OutputStream out = getContentResolver().openOutputStream(uri);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.close();
-            Toast.makeText(this, "Image saved: " + filename, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error saving image: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
     private File convertBitmapToJpeg(Bitmap bitmap) throws Exception {
         File file = new File(getCacheDir(), "temp.jpg");
         FileOutputStream fos = new FileOutputStream(file);
