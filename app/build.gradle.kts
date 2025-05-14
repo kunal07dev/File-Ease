@@ -42,7 +42,8 @@ dependencies {
     implementation ("org.apache.poi:poi:5.2.3")
     implementation ("org.apache.poi:poi-ooxml:5.2.3")
     implementation ("org.apache.poi:poi-scratchpad:5.2.3")
-
+    
+    implementation("com.arthenica:ffmpeg-kit-full:6.0-2")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
     implementation ("com.aspose:aspose-words:24.3:android.via.java")

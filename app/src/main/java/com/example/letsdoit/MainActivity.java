@@ -59,6 +59,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         photocard = findViewById(R.id.photocard);
+        videocard=findViewById(R.id.videocard);
 
         pdfbtn = findViewById(R.id.pdfbtn);
         docbtn = findViewById(R.id.docbtn);
@@ -80,6 +81,11 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this, ImageCompressionActivity.class);
             startActivity(intent);
         });
+        videocard.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, VideoCompression.class);
+            startActivity(intent);
+        });
+
 
         documentPickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

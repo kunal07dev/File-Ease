@@ -56,7 +56,7 @@ public class duplicate_main extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_duplicate_main);
+        //setContentView(R.layout.activity_duplicate_main);
 
         // Initialize views
         scanButton = findViewById(R.id.button_scan);
