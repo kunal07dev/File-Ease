@@ -145,10 +145,8 @@ import java.util.Set;
 
         // Display file type options
         private void displayFileTypes() {
-            Log.d(TAG, "Displaying file type options");
-            displayList = Arrays.asList("Images", "Videos", "PDFs", "Docs");
+            displayList = Arrays.asList("Images", "Videos", "PDFs", "Docs", "Presentations", "Spreadsheets", "Audio", "Others");
             updateGridView(displayList, "fileType");
-            // Clear the cached files when a new file type is selected.
             allFilesCache = null;
         }
 
@@ -304,15 +302,25 @@ import java.util.Set;
                 case "Docs":
                     files.addAll(getDocumentFiles("doc"));
                     break;
+                case "Presentations":
+                    files.addAll(getDocumentFiles("ppt"));
+                    break;
+                case "Spreadsheets":
+                    files.addAll(getDocumentFiles("xls"));
+                    break;
+                case "Audio":
+                    files.addAll(getAudioFiles());
+                    break;
+                case "Others":
+                    files.addAll(getOtherFiles());
+                    break;
             }
 
-            // Fallback to scanning if MediaStore returns nothing
             if (files.isEmpty()) {
                 files.addAll(scanStorageForFiles());
             }
             return files;
         }
-
         private List<File> getMediaFiles(Uri uri, String[] mimeTypes) {
             List<File> files = new ArrayList<>();
             String[] projection = {MediaStore.MediaColumns.DATA};
@@ -375,7 +383,30 @@ import java.util.Set;
                         "application/vnd.pdf",
                         "%.pdf"
                 };
-            } else { // "doc"
+            }
+            else if (type.equals("ppt")) {
+                selection = MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
+                        MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
+                        MediaStore.Files.FileColumns.DATA + " LIKE ? OR " +
+                        MediaStore.Files.FileColumns.DATA + " LIKE ?";
+                selectionArgs = new String[]{
+                        "application/vnd.ms-powerpoint",
+                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                        "%.ppt",
+                        "%.pptx"
+                };
+            } else if (type.equals("xls")) {
+                selection = MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
+                        MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
+                        MediaStore.Files.FileColumns.DATA + " LIKE ? OR " +
+                        MediaStore.Files.FileColumns.DATA + " LIKE ?";
+                selectionArgs = new String[]{
+                        "application/vnd.ms-excel",
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "%.xls",
+                        "%.xlsx"
+                };
+            }else { // "doc"
                 selection = MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
                         MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
                         MediaStore.Files.FileColumns.MIME_TYPE + "=? OR " +
@@ -463,15 +494,21 @@ import java.util.Set;
             String fileName = file.getName().toLowerCase();
             switch (selectedFileType) {
                 case "Images":
-                    return fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") ||
-                            fileName.endsWith(".png") || fileName.endsWith(".gif");
+                    return fileName.matches(".*\\.(jpg|jpeg|png|gif|webp)$");
                 case "Videos":
-                    return fileName.endsWith(".mp4") || fileName.endsWith(".mkv") ||
-                            fileName.endsWith(".avi") || fileName.endsWith(".mov");
+                    return fileName.matches(".*\\.(mp4|mkv|avi|mov|flv|wmv)$");
                 case "PDFs":
                     return fileName.endsWith(".pdf");
                 case "Docs":
-                    return fileName.endsWith(".doc") || fileName.endsWith(".docx");
+                    return fileName.matches(".*\\.(doc|docx|rtf|odt)$");
+                case "Presentations":
+                    return fileName.matches(".*\\.(ppt|pptx|odp)$");
+                case "Spreadsheets":
+                    return fileName.matches(".*\\.(xls|xlsx|ods)$");
+                case "Audio":
+                    return fileName.matches(".*\\.(mp3|wav|ogg|flac|aac)$");
+                case "Others":
+                    return fileName.matches(".*\\.(txt|zip|rar|7z|apk|html|xml|json)$");
                 default:
                     return false;
             }
@@ -524,7 +561,101 @@ import java.util.Set;
             }
         }
 
+        private void checkPermissions() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (!Environment.isExternalStorageManager()) {
+                    try {
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                        startActivity(intent);
+                    }
+                }
+            } else {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                            },
+                            STORAGE_PERMISSION_CODE);
+                }
+            }
+        }
+        private List<File> getAudioFiles() {
+            List<File> files = new ArrayList<>();
+            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            String[] projection = {MediaStore.Audio.Media.DATA};
 
+            try (Cursor cursor = getContentResolver().query(
+                    uri,
+                    projection,
+                    null,
+                    null,
+                    MediaStore.Audio.Media.DATE_MODIFIED + " DESC")) {
+
+                if (cursor != null) {
+                    int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+                    while (cursor.moveToNext()) {
+                        String filePath = cursor.getString(columnIndex);
+                        if (filePath != null) {
+                            File file = new File(filePath);
+                            if (file.exists()) {
+                                files.add(file);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error querying audio files", e);
+            }
+            return files;
+        }
+
+        private List<File> getOtherFiles() {
+            List<File> files = new ArrayList<>();
+            Uri uri = MediaStore.Files.getContentUri("external");
+            String[] projection = {MediaStore.Files.FileColumns.DATA};
+            String selection = MediaStore.Files.FileColumns.MIME_TYPE + " NOT IN (?,?,?,?,?,?,?,?,?)";
+            String[] selectionArgs = {
+                    "image/*",
+                    "video/*",
+                    "application/pdf",
+                    "application/msword",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "application/vnd.ms-powerpoint",
+                    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                    "application/vnd.ms-excel",
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            };
+
+            try (Cursor cursor = getContentResolver().query(
+                    uri,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC")) {
+
+                if (cursor != null) {
+                    int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+                    while (cursor.moveToNext()) {
+                        String filePath = cursor.getString(columnIndex);
+                        if (filePath != null) {
+                            File file = new File(filePath);
+                            if (file.exists()) {
+                                files.add(file);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error querying other files", e);
+            }
+            return files;
+        }
     }
-
-

@@ -20,4 +20,9 @@
         android:icon="@drawable/folder"
 
         android:title="Files" />
+    <item
+        android:id="@+id/Aifile"
+        android:icon="@drawable/ai_search"
+
+        android:title="AI" />
 </menu>

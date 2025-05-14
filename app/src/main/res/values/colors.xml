@@ -10,6 +10,9 @@
     <color name="onSurfaceVariant">#49454F</color>
     <color name="primary">#6750A4</color>
     <color name="onPrimary">#FFFFFF</color>
+    <color name="primary_color">#5999de</color>
+    <color name="primary_text">#212121</color>
+    <color name="error_color">#ff4444</color>
     <!-- Dark theme (values-night/colors.xml) -->
 
 </resources>

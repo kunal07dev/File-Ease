@@ -1,46 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#FAFAFA">
 
-    <!-- Button to start scanning -->
-    <Button
-        android:id="@+id/button_scan"
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan for Duplicates"
-        android:layout_marginBottom="16dp" />
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp">
 
-    <!-- RecyclerView to display duplicate files -->
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duplicate Files Finder"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_duplicates"
+    <!-- Body -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="24dp"
+        android:layout_marginTop="96dp">
 
-    <!-- Button to delete selected duplicates -->
-    <Button
-        android:id="@+id/button_delete_files"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Selected Files"
-        android:layout_marginTop="16dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+            <!-- Heading -->
+            <TextView
+                android:id="@+id/tvHeading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Find Duplicate Files"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Scan your device to find and remove duplicate files easily."
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <!-- Scan Button Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardScan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_scan"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:text="Scan for Duplicates"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#99c8ff"
+                    android:textColor="#000000"
+
+                    app:iconTint="#000000"
+                    app:iconPadding="8dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Results Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardResults"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/cardScan"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Selection Controls -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <CheckBox
+                            android:id="@+id/checkbox_select_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select All"
+                            android:textColor="#212121"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Files List -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_duplicates"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:clipToPadding="false"
+                        android:padding="4dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Delete Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_delete_files"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:text="Delete Selected Files"
+                android:textAllCaps="false"
+                android:textColor="#B00020"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:strokeColor="#B00020"
+                app:strokeWidth="1dp"
+                app:layout_constraintTop_toBottomOf="@id/cardResults"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.io.File;
 import java.util.List;
 
@@ -39,6 +38,7 @@ public class GenericAdapter extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View gridItem = convertView;
@@ -52,19 +52,38 @@ public class GenericAdapter extends BaseAdapter {
         textView.setText(file.getName());
 
         String fileName = file.getName().toLowerCase();
+        Bitmap thumb = null;
+
         if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") ||
                 fileName.endsWith(".png") || fileName.endsWith(".gif")) {
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            Bitmap thumb = ThumbnailUtils.extractThumbnail(bitmap, 150, 150);
-            imageView.setImageBitmap(thumb);
+            if (bitmap != null) {
+                thumb = ThumbnailUtils.extractThumbnail(bitmap, 150, 150);
+            }
         } else if (fileName.endsWith(".mp4") || fileName.endsWith(".mkv") ||
                 fileName.endsWith(".avi") || fileName.endsWith(".mov")) {
-            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+            thumb = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Video.Thumbnails.MINI_KIND);
+        }
+
+        if (thumb != null) {
             imageView.setImageBitmap(thumb);
-        }else if (fileName.endsWith(".pdf")) {
-            imageView.setImageResource(R.drawable.pdf1);
-        } else if (fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
-            imageView.setImageResource(R.drawable.doc1);
+        } else {
+            // Fallback icon
+            int iconRes = R.drawable.ic_file; // default
+            if (fileName.endsWith(".pdf")) {
+                iconRes = R.drawable.pdf1;
+            } else if (fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
+                iconRes = R.drawable.doc1;
+            } else if (fileName.endsWith(".ppt") || fileName.endsWith(".pptx")) {
+                iconRes = R.drawable.ppt;
+            } else if (fileName.endsWith(".xls") || fileName.endsWith(".xlsx")) {
+                iconRes = R.drawable.excel_file;
+            } else if (fileName.endsWith(".mp3") || fileName.endsWith(".wav")) {
+                iconRes = R.drawable.video;
+            } else if (fileName.endsWith(".zip") || fileName.endsWith(".rar") || fileName.endsWith(".apk")) {
+                iconRes = R.drawable.files;
+            }
+            imageView.setImageResource(iconRes);
         }
 
         return gridItem;

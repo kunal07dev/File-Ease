@@ -49,7 +49,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             return conversions.class;
         } else if (menuItemId == R.id.Files) {
             return Filesearch.class;
-        }
+
+    } else if (menuItemId == R.id.Aifile) {
+        return Ai.class;
+    }
+
         return MainActivity.class;
     }
 
